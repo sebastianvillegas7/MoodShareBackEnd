@@ -87,11 +87,11 @@ public class User {
         this.password = password;
     }
 
-    public List<Rol> getRole() {
+    public List<Rol> getRoles() {
         return roles;
     }
 
-    public void setRole(List<Rol> role) {
+    public void setRoles(List<Rol> role) {
         this.roles = role;
     }
 }
