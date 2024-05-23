@@ -1,7 +1,10 @@
 package com.moodshare.backendusers.service;
 
+import com.moodshare.backendusers.models.Rol;
 import com.moodshare.backendusers.models.User;
-import com.moodshare.backendusers.repository.UserRepository;
+import com.moodshare.backendusers.repositories.RolRepository;
+import com.moodshare.backendusers.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,6 +24,10 @@ public class UserServiceImpl implements IUserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    private RolRepository rolRepository;
+
+
     public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -26,6 +35,15 @@ public class UserServiceImpl implements IUserService {
 
     public User save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        // Buscar el rol "USER" existente
+        Rol userRole = rolRepository.findByName("USER");
+        if (userRole == null) {
+            throw new RuntimeException("Role USER not found");
+        }
+
+        // Asignar el rol "USER" al nuevo usuario
+        user.setRoles(Collections.singletonList(userRole));
         return userRepository.save(user);
     }
 
@@ -44,7 +62,6 @@ public class UserServiceImpl implements IUserService {
             user.setName(updatedUser.getName());
             user.setApellido(updatedUser.getApellido());
             user.setEmail(updatedUser.getEmail());
-            // Aquí puedes realizar otras actualizaciones si es necesario
             return userRepository.save(user);
         }
         return null;

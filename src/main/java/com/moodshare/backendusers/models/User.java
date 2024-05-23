@@ -20,7 +20,7 @@ public class User {
     private String email;
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -38,21 +38,15 @@ public class User {
         this.roles = roles;
     }
 
-    public User(Long id, String name, String apellido, String email, String password, List<Rol> roles) {
-        this.id = id;
+    public User(String name, String apellido, String email, String password) {
         this.name = name;
         this.apellido = apellido;
         this.email = email;
         this.password = password;
-        this.roles = roles;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

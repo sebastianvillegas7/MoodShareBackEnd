@@ -1,4 +1,4 @@
-package com.moodshare.backendusers.repository;
+package com.moodshare.backendusers.repositories;
 
 import com.moodshare.backendusers.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;

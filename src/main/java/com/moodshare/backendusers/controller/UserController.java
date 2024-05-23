@@ -17,34 +17,30 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @GetMapping("/login")
-    public String showLoginForm() {
-        return "login"; // Retorna la vista login.html
-    }
-
-    @GetMapping("/registro")
-    public String showRegisterForm(Model model) {
-        model.addAttribute("user", new User());
-        return "registro"; // Retorna la vista registro.html
-    }
-
-//    @GetMapping("/registro")
-//    public String showRegisterForm() {
-//        return "registro"; // Retorna la vista register.html
+    // TODO: METODOS PARA DEVOLVER PLANTILLAS
+//    @GetMapping("/login")
+//    public String showLoginForm() {
+//        return "login"; // Retorna la vista login.html
 //    }
+//
+//    @GetMapping("/registro")
+//    public String showRegisterForm(Model model) {
+//        model.addAttribute("user", new User());
+//        return "registro"; // Retorna la vista registro.html
+//    }
+//
+//    @PostMapping("/api/users/registro")
+//    public String createUser(@ModelAttribute User user) {
+//        userService.save(user);
+//        return "redirect:/login"; // Redirigir al login después del registro exitoso
+//    }
+    // TODO: METODOS PARA DEVOLVER PLANTILLAS
 
     @PostMapping("/api/users/registro")
-    public String createUser(@ModelAttribute User user) {
-        userService.save(user);
-        return "redirect:/login"; // Redirigir al login después del registro exitoso
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User savedUser = userService.save(user);
+        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
-
-
-//    @PostMapping("/api/users/registro")
-//    public ResponseEntity<User> createUser(@RequestBody User user) {
-//        User savedUser = userService.save(user);
-//        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
-//    }
 
     @GetMapping("/api/users")
     public ResponseEntity<List<User>> getAllUsers() {

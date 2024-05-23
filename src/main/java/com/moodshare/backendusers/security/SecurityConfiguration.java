@@ -23,15 +23,19 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/registro", "/login", "/api/users/registro").permitAll()
+                        .requestMatchers("/registro", "/login", "/api/users/registro").permitAll() // Permitir acceso a registro y login sin autenticación
+                        .requestMatchers("/api/users/**").permitAll() // Permitir acceso a la API sin autenticación
                         .anyRequest().authenticated()
                 )
+                .csrf(csrf -> csrf.disable()) // TODO: REACTIVAR (Deshabilitar CSRF para permitir solicitudes desde Postman o Angular sin tokens CSRF)
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .defaultSuccessUrl("/index", true)
                         .permitAll()
                 )
-                .logout(logout -> logout.logoutSuccessUrl("/").permitAll());
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/").permitAll()
+                );
 
         return http.build();
     }
