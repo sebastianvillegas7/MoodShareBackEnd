@@ -6,6 +6,7 @@ import com.moodshare.backendusers.models.User;
 import com.moodshare.backendusers.security.JwtTokenProvider;
 import com.moodshare.backendusers.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -49,10 +50,30 @@ public class UserController {
     }
 
     @PostMapping("/registro")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User savedUser = userService.save(user);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+        // Verificar si el usuario ya existe
+        User userExiste = userService.getUserByEmail(user.getEmail());
+        if (userExiste != null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("El usuario '"+ user.getEmail() +"' ya existe");
+        }
+
+        try {
+            // Intentar guardar el nuevo usuario
+            User savedUser = userService.save(user);
+            return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+        } catch (DataIntegrityViolationException e) {
+            // Si se produce una excepción de violación de integridad, devolver una respuesta de error
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al registrar el usuario: " + e.getMessage());
+        }
     }
+
+//    @PostMapping("/registro")
+//    public ResponseEntity<User> createUser(@RequestBody User user) {
+//        User savedUser = userService.save(user);
+//        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+//    }
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {

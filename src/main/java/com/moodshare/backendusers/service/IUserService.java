@@ -12,8 +12,10 @@ public interface IUserService extends UserDetailsService {
     List<User> getAllUsers();
 
     User getUserById(Long id);
+    User getUserByEmail(String email);
 
     User updateUser(Long id, User updatedUser);
 
     void deleteUser(Long id);
+
 }
