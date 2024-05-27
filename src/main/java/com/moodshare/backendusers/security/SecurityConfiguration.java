@@ -53,7 +53,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorizeHttpRequests ->
                         authorizeHttpRequests
                                 .requestMatchers("/api/registro", "/api/login").permitAll()
-                                .requestMatchers("/api/users/**").authenticated()
+                                .requestMatchers("/api/users/**").permitAll()
+                                .requestMatchers("/api/favs/**").permitAll()
                                 .anyRequest().authenticated()
                 );
 
