@@ -9,7 +9,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_usuario;
 
     @Column(name = "name")
     private String name;
@@ -23,8 +23,8 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id_rol")
     )
     private List<Rol> roles;
 
@@ -45,11 +45,11 @@ public class User {
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
+    public Long getId_usuario() {
+        return id_usuario;
     }
 
-    public void setId(Long id) { this.id = id; }
+    public void setId_usuario(Long id_usuario) { this.id_usuario = id_usuario; }
 
     public String getName() {
         return name;

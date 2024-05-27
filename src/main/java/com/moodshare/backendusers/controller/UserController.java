@@ -45,7 +45,7 @@ public class UserController {
 
         String jwt = tokenProvider.generateToken(authentication);
         User user = userService.getUserByEmail(loginRequest.getEmail());
-        Long userId = user.getId();
+        Long userId = user.getId_usuario();
 
         return ResponseEntity.ok(new LoginResponse(jwt, userId));
     }
@@ -76,23 +76,23 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @GetMapping("/users/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        User user = userService.getUserById(id);
+    @GetMapping("/users/{id_usuario}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id_usuario) {
+        User user = userService.getUserById(id_usuario);
         user.setPassword("PROTECTED");
-        user.setId(id);
+        user.setId_usuario(id_usuario);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @PutMapping("/users/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
-        User user = userService.updateUser(id, updatedUser);
+    @PutMapping("/users/{id_usuario}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id_usuario, @RequestBody User updatedUser) {
+        User user = userService.updateUser(id_usuario, updatedUser);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+    @DeleteMapping("/users/{id_usuario}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id_usuario) {
+        userService.deleteUser(id_usuario);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

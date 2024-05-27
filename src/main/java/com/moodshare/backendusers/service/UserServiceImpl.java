@@ -47,8 +47,8 @@ public class UserServiceImpl implements IUserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(Long id) {
-        Optional<User> optionalUser = userRepository.findById(id);
+    public User getUserById(Long id_usuario) {
+        Optional<User> optionalUser = userRepository.findById(id_usuario);
         return optionalUser.orElse(null);
     }
 
@@ -57,8 +57,8 @@ public class UserServiceImpl implements IUserService {
         return userRepository.findByEmail(email);
     }
 
-    public User updateUser(Long id, User updatedUser) {
-        User user = getUserById(id);
+    public User updateUser(Long id_usuario, User updatedUser) {
+        User user = getUserById(id_usuario);
         if (user != null) {
             user.setName(updatedUser.getName());
             user.setApellido(updatedUser.getApellido());
@@ -68,8 +68,8 @@ public class UserServiceImpl implements IUserService {
         return null;
     }
 
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public void deleteUser(Long id_usuario) {
+        userRepository.deleteById(id_usuario);
     }
 
     @Override
