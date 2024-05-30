@@ -3,7 +3,6 @@ package com.moodshare.backendusers.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,6 +16,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.ServletException;
 import java.io.IOException;
 
+/**
+ * Filtro de autenticación JWT que se ejecuta una vez por solicitud.
+ */
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
@@ -24,6 +26,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private UserDetailsService userDetailsService;
     private AuthenticationManager authenticationManager;
 
+    /**
+     * Constructor de JwtAuthenticationFilter.
+     *
+     * @param tokenProvider El proveedor de tokens JWT.
+     * @param userDetailsService El servicio de detalles de usuario.
+     * @param authenticationManager El administrador de autenticación.
+     */
     @Autowired
     public JwtAuthenticationFilter(JwtTokenProvider tokenProvider, UserDetailsService userDetailsService, AuthenticationManager authenticationManager) {
         this.tokenProvider = tokenProvider;
@@ -31,6 +40,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         this.authenticationManager = authenticationManager;
     }
 
+    /**
+     * Filtrar cada solicitud HTTP para verificar la validez del token JWT y autenticar al usuario si es válido.
+     *
+     * @param request La solicitud HTTP.
+     * @param response La respuesta HTTP.
+     * @param filterChain La cadena de filtros.
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
@@ -51,6 +67,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
+    /**
+     * Extraer el token JWT de la cabecera de la solicitud HTTP.
+     *
+     * @param request La solicitud HTTP.
+     * @return El token JWT si está presente y comienza con "Bearer ", de lo contrario null.
+     */
     private String getJwtFromRequest(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {

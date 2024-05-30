@@ -20,6 +20,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
+/**
+ * Configuración de seguridad para la aplicación.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
@@ -28,12 +31,25 @@ public class SecurityConfiguration {
     private final JwtAuthenticationEntryPoint unauthorizedHandler;
     private final JwtTokenProvider tokenProvider;
 
+    /**
+     * Constructor de SecurityConfiguration.
+     *
+     * @param userService El servicio de usuarios utilizado para la autenticación.
+     * @param unauthorizedHandler El manejador de entradas no autorizadas.
+     * @param tokenProvider El proveedor de tokens JWT.
+     */
     public SecurityConfiguration(IUserService userService, JwtAuthenticationEntryPoint unauthorizedHandler, JwtTokenProvider tokenProvider) {
         this.userService = userService;
         this.unauthorizedHandler = unauthorizedHandler;
         this.tokenProvider = tokenProvider;
     }
 
+    /**
+     * Configurar el AuthenticationManager.
+     *
+     * @param http El objeto HttpSecurity.
+     * @return El AuthenticationManager configurado.
+     */
     @Bean
     public AuthenticationManager authenticationManagerBean(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
@@ -43,6 +59,12 @@ public class SecurityConfiguration {
         return authenticationManagerBuilder.build();
     }
 
+    /**
+     * Configurar el SecurityFilterChain.
+     *
+     * @param http El objeto HttpSecurity.
+     * @return El SecurityFilterChain configurado.
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -63,6 +85,12 @@ public class SecurityConfiguration {
         return http.build();
     }
 
+    /**
+     * Configurar el DaoAuthenticationProvider.
+     *
+     * @param passwordEncoder El codificador de contraseñas.
+     * @return El DaoAuthenticationProvider configurado.
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider(BCryptPasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -71,11 +99,21 @@ public class SecurityConfiguration {
         return authProvider;
     }
 
+    /**
+     * Configurar el filtro de autenticación JWT.
+     *
+     * @return El filtro de autenticación JWT.
+     */
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() throws Exception {
         return new JwtAuthenticationFilter(tokenProvider, userService, authenticationManagerBean(null));
     }
 
+    /**
+     * Configurar la fuente de configuración de CORS.
+     *
+     * @return La fuente de configuración de CORS.
+     */
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
