@@ -15,7 +15,7 @@ public class Favorite {
     private Long idUsuario;
 
     @Column(name = "id_elemento")
-    private String idElemento;
+    private Long idElemento;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_elemento")
@@ -39,11 +39,11 @@ public class Favorite {
         this.idUsuario = idUsuario;
     }
 
-    public String getIdElemento() {
+    public Long getIdElemento() {
         return idElemento;
     }
 
-    public void setIdElemento(String idElemento) {
+    public void setIdElemento(Long idElemento) {
         this.idElemento = idElemento;
     }
 

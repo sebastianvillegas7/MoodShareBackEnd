@@ -49,12 +49,13 @@ public class FavoriteController {
     /**
      * Eliminar un favorito.
      *
-     * @param idFavorite El ID del favorito que se va a eliminar.
+     * @param idUsuario El ID del usuario.
+     * @param idElemento El ID del elemento favorito a eliminar.
      * @return ResponseEntity sin contenido.
      */
-    @DeleteMapping("/delete/{idFavorite}")
-    public ResponseEntity<Void> deleteFavorite(@PathVariable Long idFavorite) {
-        favoriteService.deleteFavorite(idFavorite);
+    @DeleteMapping("/del")
+    public ResponseEntity<Void> deleteFavorite(@RequestParam Long idUsuario, @RequestParam Long idElemento) {
+        favoriteService.deleteFavorite(idUsuario, idElemento);
         return ResponseEntity.noContent().build();
     }
 }

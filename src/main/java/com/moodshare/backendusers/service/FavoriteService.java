@@ -2,6 +2,7 @@ package com.moodshare.backendusers.service;
 
 import com.moodshare.backendusers.models.Favorite;
 import com.moodshare.backendusers.repositories.FavoriteRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,12 +47,17 @@ public class FavoriteService {
     }
 
     /**
-     * Eliminar un favorito.   // TODO: CAMBIAR ESTO
+     * Eliminar un favorito.
      *
-     * @param idUserrrrrrrrrrrrrrrrrrr.
-     * @param idFavorite el ID del favorito a eliminar.
+     * @param idUsuario El ID del usuario.
+     * @param idElemento El ID del elemento favorito a eliminar.
      */
-    public void deleteFavorite(Long idFavorite) {
-        favoriteRepository.deleteById(idFavorite);
+    public void deleteFavorite(Long idUsuario, Long idElemento) {
+        Favorite favorite = favoriteRepository.findByIdUsuarioAndIdElemento(idUsuario, idElemento);
+        if (favorite != null) {
+            favoriteRepository.delete(favorite);
+        } else {
+            throw new EntityNotFoundException("Favorite not found with idUsuario: " + idUsuario + " and idElemento: " + idElemento);
+        }
     }
 }
