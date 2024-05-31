@@ -101,6 +101,10 @@ public class UserServiceImpl implements IUserService {
             user.setName(updatedUser.getName());
             user.setApellido(updatedUser.getApellido());
             user.setEmail(updatedUser.getEmail());
+            if (updatedUser.getPassword() != null && !updatedUser.getPassword().isBlank()) {
+                user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+            }
+
             return userRepository.save(user);
         }
         return null;

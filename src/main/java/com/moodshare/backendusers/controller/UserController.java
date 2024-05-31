@@ -112,7 +112,6 @@ public class UserController {
     @GetMapping("/users/{id_usuario}")
     public ResponseEntity<User> getUserById(@PathVariable Long id_usuario) {
         User user = userService.getUserById(id_usuario);
-        user.setPassword("PROTECTED");
         user.setId_usuario(id_usuario);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
@@ -121,13 +120,13 @@ public class UserController {
      * Actualizar un usuario.
      *
      * @param id_usuario El ID del usuario a actualizar.
-     * @param updatedUser El objeto User con los datos actualizados.
+     * @param userNewData El objeto User con los datos actualizados.
      * @return ResponseEntity que contiene el usuario actualizado.
      */
     @PutMapping("/users/{id_usuario}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id_usuario, @RequestBody User updatedUser) {
-        User user = userService.updateUser(id_usuario, updatedUser);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    public ResponseEntity<User> updateUser(@PathVariable Long id_usuario, @RequestBody User userNewData) {
+        User updtUser = userService.updateUser(id_usuario, userNewData);
+        return new ResponseEntity<>(updtUser, HttpStatus.OK);
     }
 
     /**
