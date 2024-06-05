@@ -100,6 +100,7 @@ public class UserController {
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
+        users.forEach(user -> user.setPassword("PROTECTED"));
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
@@ -113,6 +114,7 @@ public class UserController {
     public ResponseEntity<User> getUserById(@PathVariable Long id_usuario) {
         User user = userService.getUserById(id_usuario);
         user.setId_usuario(id_usuario);
+        user.setPassword("PROTECTED");
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
