@@ -50,7 +50,7 @@ public class FavoriteService {
      * Eliminar un favorito.
      *
      * @param idUsuario El ID del usuario.
-     * @param idElemento El ID del elemento favorito a eliminar.
+     * @param idElemento El ID del elemento a eliminar.
      */
     public void deleteFavorite(Long idUsuario, Long idElemento) {
         Favorite favorite = favoriteRepository.findByIdUsuarioAndIdElemento(idUsuario, idElemento);

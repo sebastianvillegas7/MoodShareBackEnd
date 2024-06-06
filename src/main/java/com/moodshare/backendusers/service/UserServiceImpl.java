@@ -40,6 +40,7 @@ public class UserServiceImpl implements IUserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    // Métodos de servicio
     /**
      * Guardar un usuario.
      *
@@ -47,6 +48,7 @@ public class UserServiceImpl implements IUserService {
      * @return El usuario guardado.
      */
     public User save(User user) {
+        // Codificar la contraseña antes de guardarla en la base de datos
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         // Buscar el rol "USER"

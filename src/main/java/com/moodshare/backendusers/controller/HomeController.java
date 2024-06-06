@@ -8,6 +8,6 @@ public class HomeController {
 
     @GetMapping("/index")
     public String index() {
-        return "index"; // Nombre de la plantilla Thymeleaf correspondiente
+        return "index";
     }
 }

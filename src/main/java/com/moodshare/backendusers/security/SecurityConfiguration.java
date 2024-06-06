@@ -75,8 +75,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorizeHttpRequests ->
                         authorizeHttpRequests
                                 .requestMatchers("/api/registro", "/api/login").permitAll()
-                                .requestMatchers("/api/users/**").permitAll()
-                                .requestMatchers("/api/favs/**").permitAll()
+                                .requestMatchers("/api/users/**").permitAll() // TODO: VER VER VER VER
+                                .requestMatchers("/api/favs/**").permitAll() // TODO: VER VER VER VER
                                 .anyRequest().authenticated()
                 );
 
