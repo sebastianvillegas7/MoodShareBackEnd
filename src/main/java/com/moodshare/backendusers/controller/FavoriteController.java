@@ -47,6 +47,17 @@ public class FavoriteController {
     }
 
     /**
+     * Obtener todos los favoritos.
+     *
+     * @return ResponseEntity que contiene una lista de todos los favoritos.
+     */
+    @GetMapping
+    public ResponseEntity<List<Favorite>> getAllFavorites() {
+        List<Favorite> favorites = favoriteService.getAllFavorites();
+        return ResponseEntity.ok(favorites);
+    }
+
+    /**
      * Eliminar un favorito.
      *
      * @param idUsuario El ID del usuario.

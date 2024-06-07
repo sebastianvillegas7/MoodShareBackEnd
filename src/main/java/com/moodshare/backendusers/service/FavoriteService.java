@@ -37,6 +37,15 @@ public class FavoriteService {
     }
 
     /**
+     * Obtener una lista de todos los favoritos.
+     *
+     * @return La lista de todos los favoritos de la BBDD.
+     */
+    public List<Favorite> getAllFavorites() {
+        return favoriteRepository.findAll();
+    }
+
+    /**
      * Obtener una lista de favoritos del ID usuario proporcionado.
      *
      * @param idUsuario El ID del usuario.
