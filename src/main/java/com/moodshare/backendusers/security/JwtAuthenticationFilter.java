@@ -19,7 +19,7 @@ import java.io.IOException;
 /**
  * Filtro de autenticación JWT que se ejecuta una vez por solicitud.
  */
-@Component
+// @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private JwtTokenProvider tokenProvider;

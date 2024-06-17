@@ -75,8 +75,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorizeHttpRequests ->
                         authorizeHttpRequests
                                 .requestMatchers("/api/registro", "/api/login").permitAll()
-                                .requestMatchers("/api/users/**").permitAll() // TODO: VER VER VER VER
-                                .requestMatchers("/api/favs/**").permitAll() // TODO: VER VER VER VER
+                                .requestMatchers("/api/users/**").permitAll()
+                                .requestMatchers("/api/favs/**").permitAll()
                                 .anyRequest().authenticated()
                 );
 
@@ -117,7 +117,7 @@ public class SecurityConfiguration {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://143.47.48.255:8081"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
