@@ -23,53 +23,53 @@ Este proyecto fue generado con [Spring Boot + Java](https://github.com/spring-pr
 
 ## 🛠️ Diseño y Arquitectura
 ### Diseño de la Aplicación
-<img src="src/assets/img/mood-pdf/diseno-app.png" alt="MoodShare App" width="800px">
+<img src="src/main/resources/img/mood-pdf/diseno-app.png" alt="MoodShare App" width="800px">
 
 ---
 
 ### Front-end
-<img src="src/assets/img/mood-pdf/front-end.png" alt="MoodShare App" width="800px">
+<img src="src/main/resources/img/mood-pdf/front-end.png" alt="MoodShare App" width="800px">
 
 ---
 
 ### Back-end
-<img src="src/assets/img/mood-pdf/back-end.png" alt="MoodShare App" width="800px">
+<img src="src/main/resources/img/mood-pdf/back-end.png" alt="MoodShare App" width="800px">
 
 ---
 
 ### API Rest
-<img src="src/assets/img/mood-pdf/api-rest.png" alt="MoodShare App" width="800px">
+<img src="src/main/resources/img/mood-pdf/api-rest.png" alt="MoodShare App" width="800px">
 
 ---
 
 ### Flujo de Operación
-<img src="src/assets/img/mood-pdf/flujo-operacion.png" alt="MoodShare App" width="800px">
+<img src="src/main/resources/img/mood-pdf/flujo-operacion.png" alt="MoodShare App" width="800px">
 
 ---
 
 ### Despliegue
-<img src="src/assets/img/mood-pdf/deploy.png" alt="MoodShare App" width="800px">
+<img src="src/main/resources/img/mood-pdf/deploy.png" alt="MoodShare App" width="800px">
 
 ---
 
 ## 📸 Capturas de Pantalla
 ### Página Principal
-<img src="src/assets/img/screenshots/00-large.png" alt="MoodShare Principal" width="800px">
+<img src="src/main/resources/img/screenshots/00-large.png" alt="MoodShare App" width="800px">
 
 ### Registro de Usuario
-<img src="src/assets/img/screenshots/01-large.png" alt="Registro MoodShare" width="800px">
+<img src="src/main/resources/img/screenshots/01-large.png" alt="MoodShare App" width="800px">
 
 ### Inicio de Sesión
-<img src="src/assets/img/screenshots/02-large.png" alt="Inicio Sesión MoodShare" width="800px">
+<img src="src/main/resources/img/screenshots/02-large.png" alt="MoodShare App" width="800px">
 
 ### Panel de Usuario
-<img src="src/assets/img/screenshots/03-large.png" alt="Panel MoodShare" width="800px">
+<img src="src/main/resources/img/screenshots/03-large.png" alt="MoodShare App" width="800px">
 
 ### Lista de Reproducción
-<img src="src/assets/img/screenshots/04-large.png" alt="Lista MoodShare" width="800px">
+<img src="src/main/resources/img/screenshots/04-large.png" alt="MoodShare App" width="800px">
 
 ### Detalles de Canciones
-<img src="src/assets/img/screenshots/05-large.png" alt="Detalles MoodShare" width="800px">
+<img src="src/main/resources/img/screenshots/05-large.png" alt="MoodShare App" width="800px">
 
 ---
 
