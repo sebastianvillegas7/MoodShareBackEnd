@@ -2,6 +2,9 @@
 > [!NOTE]
 Este proyecto fue generado con [Spring Boot + Java](https://github.com/spring-projects/spring-boot).
 
+> [!NOTE]
+> También puedes ver el repositorio del [Front-end](https://github.com/sebastianvillegas7/MoodShareFrontEnd) de este proyecto.
+
 MoodShare es una aplicación inspirada en mi amor por la música y el deseo de compartirlo con los demás, ha sido desarrollada con la idea de combinar esta visión con los conceptos aprendidos durante mi formación académica.
 
 ## Diseño de la aplicación
