@@ -1,4 +1,4 @@
-# MoodShare
+# MoodShare Backend
 
 Este proyecto fue generado con [Spring Boot + Java](https://github.com/spring-projects/spring-boot).
 
@@ -18,6 +18,9 @@ MoodShare es una aplicación inspirada en mi amor por la música y el deseo de c
 
 ## Flujo de Operación
 <img src="src/main/resources/img/mood-pdf/flujo-operacion.png" alt="MoodShare App" width="400px">
+
+## Despliegue
+<img src="src/main/resources/img/mood-pdf/deploy.png" alt="MoodShare App" width="400px">
 
 ## Capturas
 <img src="src/main/resources/img/screenshots/07-large.png" alt="MoodShare App" width="400px">
