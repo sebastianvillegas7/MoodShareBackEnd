@@ -53,15 +53,19 @@ git clone https://github.com/sebastianvillegas7/MoodShareBackEnd.git
 
 ### 2. Configurar la base de datos
 > Asegúrate de que el servidor de la base de datos está corriendo.
+
 > Crea una base de datos para la aplicación
+
 > Configura las credenciales de acceso en el archivo application.properties
 
 ### 3. Construir y empaquetar el proyecto
 > Ejecuta el siguiente comando para construir el proyecto:
+
 mvn clean install
 
 ### 4. Ejecutar el proyecto
 > Ejecuta la aplicación usando el siguiente comando:
+
 java -jar target/moodshare-backend-0.0.1-SNAPSHOT.jar
 
 >[!IMPORTANT]
@@ -69,6 +73,7 @@ java -jar target/moodshare-backend-0.0.1-SNAPSHOT.jar
 
 ### 5. API Endpoints
 > Endpoints principales
+
 POST /login
 Autenticación de usuarios.
 
@@ -82,6 +87,7 @@ GET /users/{idUsuario}
 Obtención de información de un usuario específico.
 
 > Endpoints adicionales
+
 GET /index
 Endpoint principal de la aplicación.
 
