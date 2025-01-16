@@ -115,7 +115,7 @@ java -jar target/moodshare-backend-0.0.1-SNAPSHOT.jar
 > Por defecto, el servidor se ejecutará en:
 
 ```
-http://localhost:8080.
+http://localhost:8080
 ```
 
 ### 5. API Endpoints
